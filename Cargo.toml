@@ -1,0 +1,28 @@
+[package]
+name = "eth-tx-order"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+license = "MIT"
+description = "Allocation-free hot-path ordering of Ethereum transactions by nonce dependency and effective tip"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "bench-order"
+path = "src/bin/bench_order.rs"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+
+[profile.bench]
+inherits = "release"
+debug = false
+
+[workspace]
+resolver = "2"
